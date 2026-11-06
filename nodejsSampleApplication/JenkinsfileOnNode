@@ -1,0 +1,46 @@
+def image
+
+pipeline {
+    agent any
+    stages {
+        stage('Pull Image') {                 
+            steps {
+                script {
+                    image = docker.build("saurabhd2106/nodeapp:v02", "--pull -f Dockerfile .")
+                }                
+            }
+        }   
+        stage('Run Image') {
+            steps {
+                script {
+                    container = image.run()
+                    container.stop()
+              }
+            }
+        }
+       
+    }
+    agent {label 'node-1'}
+    stages {
+     stage('Push') {                 
+            steps { 
+                script {
+                    withDockerRegistry([credentialsId: "docker-hub", url: "" ]) {        
+                        image.push()
+                    }     
+                }
+            }
+        }
+
+        stage('Publish') {                 
+            steps { 
+                script {
+                    withDockerRegistry([credentialsId: "docker-hub", url: "" ]) {        
+                        image.pull()
+                    }
+                    image.run('-p 3000:3000')     
+                }
+            }
+        }
+    }
+}

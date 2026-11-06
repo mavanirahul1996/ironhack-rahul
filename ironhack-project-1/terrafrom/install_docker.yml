@@ -1,0 +1,112 @@
+- name: Install Docker on all EC2 instances
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Install Docker
+      ansible.builtin.dnf:
+        name: docker
+        state: present
+
+    - name: Start and enable Docker
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add ec2-user to Docker group
+      ansible.builtin.user:
+        name: ec2-user
+        groups: docker
+        append: yes
+
+    - name: Check Docker version
+      ansible.builtin.command: docker --version
+      register: docker_version
+      changed_when: false
+
+    - name: Display Docker version
+      ansible.builtin.debug:
+        msg: "{{ docker_version.stdout }}"
+
+
+- name: Start Vote container
+  hosts: frontend
+  become: yes
+
+  tasks:
+    - name: Run Vote App
+      community.docker.docker_container:
+        name: vote
+        image: rmavani/ironhack-project1:vote-app
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8080:80"
+        env:
+          REDIS_HOST: "10.0.5.244"
+          REDIS_PORT: "6379"
+
+
+- name: Start Result container
+  hosts: frontend
+  become: yes
+
+  tasks:
+    - name: Run Result App
+      community.docker.docker_container:
+        name: result
+        image: rmavani/ironhack-project1:result-app
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8081:4000"
+        env:
+          PG_HOST: "10.0.5.146"
+          PG_PORT: "5432"
+          PG_USER: "postgres"
+          PG_PASSWORD: "postgres"
+          PG_DATABASE: "postgres"
+
+
+- name: Start Worker container
+  hosts: backend
+  become: yes
+
+  tasks:
+    - name: Run Worker App
+      community.docker.docker_container:
+        name: worker
+        image: rmavani/ironhack-project1:worker-app
+        state: started
+        restart_policy: unless-stopped
+        env:
+          REDIS_HOST: "10.0.5.244"
+          DB_HOST: "10.0.5.146"
+          DB_USERNAME: "postgres"
+          DB_PASSWORD: "postgres"
+          DB_NAME: "postgres"
+
+
+- name: Start PostgreSQL with persistent volume
+  hosts: db
+  become: yes
+
+  tasks:
+    - name: Create PostgreSQL data volume
+      community.docker.docker_volume:
+        name: postgres_data
+        state: present
+
+    - name: Run PostgreSQL App
+      community.docker.docker_container:
+        name: db
+        image: postgres:15-alpine
+        state: started
+        restart_policy: unless-stopped
+        env:
+          POSTGRES_USER: "postgres"
+          POSTGRES_PASSWORD: "postgres"
+        volumes:
+          - "postgres_data:/var/lib/postgresql/data"

@@ -1,0 +1,6 @@
+2025-03-30 21:40:12 sshd[1021]: Accepted password for sarah from 10.0.4.1
+2025-03-30 21:47:33 sshd[1044]: Accepted password for rick from 10.0.4.31
+2025-03-30 21:52:02 sudo: sarah : TTY=pts/0 ; COMMAND=/usr/bin/tail -f /var/log/nginx/access.log
+2025-03-30 21:58:00 sudo: rick : TTY=pts/1 ; COMMAND=/usr/bin/systemctl stop postgres
+2025-03-30 22:05:19 sshd[1109]: Accepted password for jonas from 10.0.4.55
+2025-03-30 22:06:40 sudo: jonas : TTY=pts/2 ; COMMAND=/usr/bin/systemctl status webapp

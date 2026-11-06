@@ -1,0 +1,23 @@
+---
+- name: Jinja2 Configuration Lab
+  hosts: jinja_servers
+  become: yes
+  vars:
+    environment_type: "development"
+    server_role: "web-front"
+ 
+  tasks:
+    - name: Install necessary packages
+      apt:
+        name: htop
+        state: present
+        update_cache: yes
+ 
+    - name: Render custom config using Jinja2 template
+      template:
+        src: templates/my_config.j2
+        dest: /etc/my_config
+        mode: '0644'
+ 
+    - name: Display the rendered config for debugging
+      command: cat /etc/my_config

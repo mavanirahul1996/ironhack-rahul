@@ -1,0 +1,11 @@
+# my_config.j2
+# This is a custom configuration file generated via Ansible and Jinja2!
+ 
+Environment: {{ environment_type }}
+Server Role: {{ server_role }}
+ 
+# Message to show each server is unique:
+Custom Greeting: "Hello from {{ inventory_hostname }} - The IP is {{ ansible_host }}"
+ 
+# The server time is dynamically inserted:
+Generated At: {{ lookup('pipe','date') }}

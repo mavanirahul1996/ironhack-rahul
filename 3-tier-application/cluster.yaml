@@ -1,0 +1,6 @@
+resourceGroup: rg-rahul-aks
+clusterName: rahul-aks
+location: eastus
+nodeCount: 1
+nodeVMSize: Standard_D2s_v3
+tier: free

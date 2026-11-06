@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis-container
+          image: redis:6.2
+          ports:
+            - containerPort: 6379
+          # Optional: you can define command/args to customize Redis if needed
+          # command: ["redis-server", "--appendonly", "yes"]

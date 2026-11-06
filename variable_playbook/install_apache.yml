@@ -1,0 +1,19 @@
+- name: Install Apache server
+  hosts: all
+  become: yes
+
+  vars_files:
+    - var.yml
+
+  tasks:
+    - name: Install Apache
+      apt:
+        name: "{{ package_name }}"
+        state: present
+        update_cache: yes
+
+    - name: Start Apache
+      service:
+        name: "{{ package_name }}"
+        state: started
+        enabled: yes

@@ -1,0 +1,37 @@
+// Minimal Alloy: ship opted-in containers to Loki.
+// Loki 3 best practice: few labels at ingest, parse at query time.
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+discovery.relabel "containers" {
+  targets = discovery.docker.containers.targets
+  rule {
+    source_labels = ["__meta_docker_container_label_logging"]
+    regex         = "alloy"
+    action        = "keep"
+  }
+  rule {
+    source_labels = ["__meta_docker_container_label_com_docker_compose_service"]
+    target_label  = "service_name"
+  }
+}
+
+loki.source.docker "containers" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = discovery.relabel.containers.output
+  forward_to = [loki.write.default.receiver]
+}
+
+// Apps can also push OTLP logs here (Loki ingests OTLP natively on /otlp)
+otelcol.receiver.otlp "default" {
+  http { endpoint = "0.0.0.0:4318" }
+  output { logs = [otelcol.exporter.otlphttp.loki.input] }
+}
+otelcol.exporter.otlphttp "loki" {
+  client { endpoint = "http://loki:3100/otlp" }
+}
+
+loki.write "default" {
+  endpoint { url = "http://loki:3100/loki/api/v1/push" }
+}

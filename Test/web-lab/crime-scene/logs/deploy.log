@@ -1,0 +1,7 @@
+2025-03-30 22:01:00 [INFO] Deployment started by user: rick
+2025-03-30 22:01:05 [INFO] Pulling image: webapp:v2.3.1
+2025-03-30 22:01:12 [ERROR] Connection refused: database port 5432
+2025-03-30 22:01:13 [ERROR] Health check failed on /api/status
+2025-03-30 22:01:15 [WARN] Falling back to previous image: webapp:v2.2.0
+2025-03-30 22:01:20 [ERROR] Rollback FAILED - config mismatch
+2025-03-30 22:01:22 [FATAL] Service webapp is DOWN

@@ -1,0 +1,12 @@
+groups:
+  - name: shop
+    interval: 10s
+    rules:
+      # recording rule -> pushed to Prometheus via ruler remote_write
+      - record: shop:errors:rate1m
+        expr: sum(rate({service_name="shop"} | json | level="error" [1m]))
+      - alert: ShopHighErrorRate
+        expr: sum(rate({service_name="shop"} | json | level="error" [1m])) > 0.05
+        for: 1m
+        labels: { severity: warning }
+        annotations: { summary: "shop error rate is high" }

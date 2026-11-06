@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+Line 1: Hello, aa main branch no code che.
+=======
+Line 1: Hello, aa feature branch no code che.
+>>>>>>> feature-branch

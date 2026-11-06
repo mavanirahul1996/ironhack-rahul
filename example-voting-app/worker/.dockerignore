@@ -1,0 +1,26 @@
+# .dockerignore
+
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.gitattributes
+**/.idea
+**/.project
+**/.settings
+**/.svn
+**/.vscode
+**/*.md
+**/*.suo
+**/*.user
+**/*.userosscache
+**/*.sln
+**/*.sln.docstates
+**/*.db
+**/*.DS_Store
+**/*.tgz
+**/*.gz
+**/*.zip
+**/bin/
+**/obj/

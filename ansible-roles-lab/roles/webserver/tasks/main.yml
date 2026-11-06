@@ -1,0 +1,17 @@
+---
+- name: Install Apache and PHP
+  ansible.builtin.apt:
+    name:
+      - apache2
+      - php
+    state: present
+    update_cache: true
+  become: true
+
+- name: Copy index.php to Apache document root
+  ansible.builtin.copy:
+    src: index.php
+    dest: /var/www/html/index.php
+    mode: '0644'
+  become: true
+  notify: Restart Apache

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+spec:
+  # Option A: ClusterIP (default) - for internal cluster usage
+  # type: ClusterIP
+  
+  # Option B: NodePort - so you can connect externally (uncomment type if you want external)
+  type: NodePort
+  
+  selector:
+    app: redis
+  ports:
+    - port: 6379          # Service port
+      targetPort: 6379    # Container's port
+      nodePort: 30079     # Only used if type=NodePort. Adjust if needed.

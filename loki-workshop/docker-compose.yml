@@ -1,0 +1,63 @@
+# Loki 3.7 lab — single-binary Loki, Alloy as the collector (NOT Promtail: EOL 2026-03-02)
+name: loki-lab
+
+services:
+  loki:
+    image: grafana/loki:3.7.9
+    command: ["-config.file=/etc/loki/loki.yaml"]
+    ports: ["127.0.0.1:3100:3100"]
+    volumes:
+      - ./loki.yaml:/etc/loki/loki.yaml:ro
+      - ./rules:/loki/rules/fake:ro        # "fake" = tenant id when auth_enabled=false
+      - loki-data:/loki
+    depends_on: [prometheus]
+
+  alloy:
+    image: grafana/alloy:v1.21.3
+    command: ["run", "--server.http.listen-addr=0.0.0.0:12345", "--storage.path=/var/lib/alloy/data", "/etc/alloy/config.alloy"]
+    ports: ["127.0.0.1:12345:12345", "127.0.0.1:4318:4318"]
+    volumes:
+      - ./alloy:/etc/alloy:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - alloy-data:/var/lib/alloy/data
+    depends_on: [loki]
+
+  prometheus:
+    image: prom/prometheus:latest
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --web.enable-remote-write-receiver      # receives Loki ruler recording rules
+    ports: ["127.0.0.1:9091:9090"]
+    volumes: ["./prometheus.yml:/etc/prometheus/prometheus.yml:ro"]
+
+  grafana:
+    image: grafana/grafana:13.2.5
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+    ports: ["127.0.0.1:3030:3000"]
+    volumes: ["./grafana/provisioning:/etc/grafana/provisioning:ro"]
+
+  # --- log producers -------------------------------------------------
+  shop:        # JSON logs
+    image: python:3.13-alpine
+    labels: { logging: alloy }
+    volumes: ["./apps/shop.py:/app.py:ro"]
+    command: ["python", "-u", "/app.py"]
+
+  payments:    # logfmt logs
+    image: python:3.13-alpine
+    labels: { logging: alloy }
+    volumes: ["./apps/payments.py:/app.py:ro"]
+    command: ["python", "-u", "/app.py"]
+
+  # --- tools (not started by default): docker compose run --rm logcli ... ---
+  logcli:
+    image: grafana/logcli:latest
+    profiles: ["tools"]
+    environment:
+      LOKI_ADDR: http://loki:3100
+
+volumes:
+  loki-data:
+  alloy-data:

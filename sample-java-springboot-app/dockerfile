@@ -1,0 +1,21 @@
+# Base Image
+FROM eclipse-temurin:17-jdk-alpine
+
+# Set Working Directory
+WORKDIR /app
+
+# Expose Application Port
+EXPOSE 8080
+
+# Copy necessary files
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+
+# Download dependencies
+RUN ./mvnw dependency:go-offline
+
+# Copy application source code
+COPY src ./src
+
+# Start the application
+CMD ["./mvnw", "spring-boot:run"]

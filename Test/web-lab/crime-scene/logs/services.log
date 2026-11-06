@@ -1,0 +1,4 @@
+nginx: active (running)
+postgres: inactive (dead) since 2025-03-30 21:58:00
+redis: active (running)
+webapp: failed (exit code 1)

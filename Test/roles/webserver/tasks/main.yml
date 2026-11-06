@@ -1,0 +1,15 @@
+apt:
+    name:
+      - apache2
+      - php
+    state: present
+    update_cache: yes
+  become: true
+ 
+- name: Copy index.php to Apache docroot
+  copy:
+    src: index.php
+    dest: /var/www/html/index.php
+    mode: '0644'
+  become: true
+  notify: Restart Apache

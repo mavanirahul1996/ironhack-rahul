@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create an EC2 instance using CloudFormation
+
+Resources:
+  EC2Server:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0878e4d659d91d45e
+      InstanceType: t2.micro
+      SubnetId: subnet-02523a522f2712083
+      SecurityGroupIds:
+        - sg-02f561a59e4e9982b
+      KeyName: rahul-cloudformation-lab
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeSize: 15

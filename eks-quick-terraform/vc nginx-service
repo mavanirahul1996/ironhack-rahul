@@ -1,0 +1,225 @@
+{
+    "LoadBalancerDescriptions": [
+        {
+            "LoadBalancerName": "af30c6ed59db4496eaf21157c543bc39",
+            "DNSName": "af30c6ed59db4496eaf21157c543bc39-381147041.us-east-1.elb.amazonaws.com",
+            "CanonicalHostedZoneName": "af30c6ed59db4496eaf21157c543bc39-381147041.us-east-1.elb.amazonaws.com",
+            "CanonicalHostedZoneNameID": "Z35SXDOTRQ7X7K",
+            "ListenerDescriptions": [
+                {
+                    "Listener": {
+                        "Protocol": "TCP",
+                        "LoadBalancerPort": 80,
+                        "InstanceProtocol": "TCP",
+                        "InstancePort": 31528
+                    },
+                    "PolicyNames": []
+                }
+            ],
+            "Policies": {
+                "AppCookieStickinessPolicies": [],
+                "LBCookieStickinessPolicies": [],
+                "OtherPolicies": []
+            },
+            "BackendServerDescriptions": [],
+            "AvailabilityZones": [
+                "us-east-1a",
+                "us-east-1b"
+            ],
+            "Subnets": [
+                "subnet-065d784f1c00b49ec",
+                "subnet-09617c0f2dcfd70c3"
+            ],
+            "VPCId": "vpc-00d90cfe22b9c7d67",
+            "Instances": [
+                {
+                    "InstanceId": "i-045fc1e2f2bace23d"
+                },
+                {
+                    "InstanceId": "i-0763a7d1997bb9efb"
+                }
+            ],
+            "HealthCheck": {
+                "Target": "TCP:31528",
+                "Interval": 10,
+                "Timeout": 5,
+                "UnhealthyThreshold": 6,
+                "HealthyThreshold": 2
+            },
+            "SourceSecurityGroup": {
+                "OwnerAlias": "686699774218",
+                "GroupName": "k8s-elb-af30c6ed59db4496eaf21157c543bc39"
+            },
+            "SecurityGroups": [
+                "sg-0e837a96bf2f751d1"
+            ],
+            "CreatedTime": "2026-10-20T08:25:26.440000+00:00",
+            "Scheme": "internet-facing"
+        },
+        {
+            "LoadBalancerName": "a7971d5a87988456e8b1be32dfc0a398",
+            "DNSName": "a7971d5a87988456e8b1be32dfc0a398-1404524611.us-east-1.elb.amazonaws.com",
+            "CanonicalHostedZoneName": "a7971d5a87988456e8b1be32dfc0a398-1404524611.us-east-1.elb.amazonaws.com",
+            "CanonicalHostedZoneNameID": "Z35SXDOTRQ7X7K",
+            "ListenerDescriptions": [
+                {
+                    "Listener": {
+                        "Protocol": "TCP",
+                        "LoadBalancerPort": 80,
+                        "InstanceProtocol": "TCP",
+                        "InstancePort": 30961
+                    },
+                    "PolicyNames": []
+                }
+            ],
+            "Policies": {
+                "AppCookieStickinessPolicies": [],
+                "LBCookieStickinessPolicies": [],
+                "OtherPolicies": []
+            },
+            "BackendServerDescriptions": [],
+            "AvailabilityZones": [
+                "us-east-1a",
+                "us-east-1b"
+            ],
+            "Subnets": [
+                "subnet-0750ccc4f84c362b8",
+                "subnet-0fde5bf30960fe495"
+            ],
+            "VPCId": "vpc-0b781270cedf126d9",
+            "Instances": [
+                {
+                    "InstanceId": "i-0a0f63f5028052bd2"
+                },
+                {
+                    "InstanceId": "i-0f4d4e62c28ba85a3"
+                }
+            ],
+            "HealthCheck": {
+                "Target": "TCP:30961",
+                "Interval": 10,
+                "Timeout": 5,
+                "UnhealthyThreshold": 6,
+                "HealthyThreshold": 2
+            },
+            "SourceSecurityGroup": {
+                "OwnerAlias": "686699774218",
+                "GroupName": "k8s-elb-a7971d5a87988456e8b1be32dfc0a398"
+            },
+            "SecurityGroups": [
+                "sg-051f347436ee83d8b"
+            ],
+            "CreatedTime": "2026-10-20T08:15:48.120000+00:00",
+            "Scheme": "internet-facing"
+        },
+        {
+            "LoadBalancerName": "a298196d3d47543d5a29174e1fc87400",
+            "DNSName": "a298196d3d47543d5a29174e1fc87400-825754894.us-east-1.elb.amazonaws.com",
+            "CanonicalHostedZoneName": "a298196d3d47543d5a29174e1fc87400-825754894.us-east-1.elb.amazonaws.com",
+            "CanonicalHostedZoneNameID": "Z35SXDOTRQ7X7K",
+            "ListenerDescriptions": [
+                {
+                    "Listener": {
+                        "Protocol": "TCP",
+                        "LoadBalancerPort": 80,
+                        "InstanceProtocol": "TCP",
+                        "InstancePort": 31746
+                    },
+                    "PolicyNames": []
+                }
+            ],
+            "Policies": {
+                "AppCookieStickinessPolicies": [],
+                "LBCookieStickinessPolicies": [],
+                "OtherPolicies": []
+            },
+            "BackendServerDescriptions": [],
+            "AvailabilityZones": [
+                "us-east-1a",
+                "us-east-1b"
+            ],
+            "Subnets": [
+                "subnet-0cc2af01be916859a",
+                "subnet-0e3a4958abea002a6"
+            ],
+            "VPCId": "vpc-04980a2e3eb023229",
+            "Instances": [
+                {
+                    "InstanceId": "i-0f671f93a50b09b62"
+                },
+                {
+                    "InstanceId": "i-0ff162e71b5f6843d"
+                }
+            ],
+            "HealthCheck": {
+                "Target": "TCP:31746",
+                "Interval": 10,
+                "Timeout": 5,
+                "UnhealthyThreshold": 6,
+                "HealthyThreshold": 2
+            },
+            "SourceSecurityGroup": {
+                "OwnerAlias": "686699774218",
+                "GroupName": "k8s-elb-a298196d3d47543d5a29174e1fc87400"
+            },
+            "SecurityGroups": [
+                "sg-012d099d7fd3dd181"
+            ],
+            "CreatedTime": "2026-10-20T08:24:09.060000+00:00",
+            "Scheme": "internet-facing"
+        },
+        {
+            "LoadBalancerName": "a09615464521740e1a6cdbde8791d8c5",
+            "DNSName": "a09615464521740e1a6cdbde8791d8c5-48085129.us-east-1.elb.amazonaws.com",
+            "CanonicalHostedZoneName": "a09615464521740e1a6cdbde8791d8c5-48085129.us-east-1.elb.amazonaws.com",
+            "CanonicalHostedZoneNameID": "Z35SXDOTRQ7X7K",
+            "ListenerDescriptions": [
+                {
+                    "Listener": {
+                        "Protocol": "TCP",
+                        "LoadBalancerPort": 80,
+                        "InstanceProtocol": "TCP",
+                        "InstancePort": 30730
+                    },
+                    "PolicyNames": []
+                }
+            ],
+            "Policies": {
+                "AppCookieStickinessPolicies": [],
+                "LBCookieStickinessPolicies": [],
+                "OtherPolicies": []
+            },
+            "BackendServerDescriptions": [],
+            "AvailabilityZones": [
+                "us-east-1a",
+                "us-east-1b"
+            ],
+            "Subnets": [
+                "subnet-08395bb4229cc11aa",
+                "subnet-0ce21424b00452533"
+            ],
+            "VPCId": "vpc-08148cf55e0ed84f1",
+            "Instances": [
+                {
+                    "InstanceId": "i-02a0e38ccab882747"
+                },
+                {
+                    "InstanceId": "i-02c95404a4204861b"
+                }
+            ],
+            "HealthCheck": {
+                "Target": "TCP:30730",
+                "Interval": 10,
+                "Timeout": 5,
+                "UnhealthyThreshold": 6,
+                "HealthyThreshold": 2
+            },
+            "SourceSecurityGroup": {
+                "OwnerAlias": "686699774218",
+                "GroupName": "k8s-elb-a09615464521740e1a6cdbde8791d8c5"
+            },
+            "SecurityGroups": [
+                "sg-0429ec65f05467e0b"
+            ],
+            "CreatedTime": "2026-10-20T08:23:52.910000+00:00",
+            "Scheme": "inte

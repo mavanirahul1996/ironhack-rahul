@@ -1,0 +1,20 @@
+
+Host frontend
+    HostName 54.236.240.238
+    User ec2-user
+    IdentityFile ~/.ssh/rahul_sep26_rsa.pem
+    IdentitiesOnly yes
+
+Host backend
+    HostName 10.0.5.244
+    User ec2-user
+    IdentityFile ~/.ssh/rahul_sep26_rsa.pem
+    IdentitiesOnly yes
+    ProxyJump frontend
+
+Host database
+    HostName 10.0.5.146
+    User ec2-user
+    IdentityFile ~/.ssh/rahul_sep26_rsa.pem
+    IdentitiesOnly yes
+    ProxyJump frontend

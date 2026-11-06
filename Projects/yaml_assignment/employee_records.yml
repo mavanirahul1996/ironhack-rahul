@@ -1,0 +1,29 @@
+- Name: John
+  Employee ID: AC1232
+  Phone number:
+    - 3645735435
+    - 435345345
+  Address:
+    home:
+      house_number: 21343
+      sector: 66
+      pincode: 122012
+    office:
+      house_number: 2342
+      locality: palm vihar
+      pincode: 122001
+
+- Name: Whitney
+  Employee ID: AVX4353
+  Phone number:
+    - 3254632
+    - 3287452
+  Address:
+    home:
+      house_number: 34732
+      sector: 23
+      pincode: 123344
+    office:
+      house_number: 545
+      locality: sheesh vihar
+      pincode: 342423

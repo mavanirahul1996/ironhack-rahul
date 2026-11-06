@@ -1,0 +1,50 @@
+# Private keys and credentials
+*.pem
+*.key
+*.p12
+*.pfx
+git_key
+*accessKeys*.csv
+windoes_aws_pass
+credentials
+.env
+.env.*
+!.env.example
+
+# Terraform sensitive files
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+
+# Kubernetes credentials
+.kube/
+kubeconfig
+
+# Dependencies
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Additional secrets
+*.env
+*password*
+*secret*
+*.tfstate*
+*.tfvars
+*.pem
+*.key
+*.csv
+.terraform/
+node_modules/
+venv/
+.venv/
